@@ -42,6 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuilderResolvableItem.cs" />
+    <Compile Include="ContainerBuilder.cs" />
+    <Compile Include="DefaultResolvable.cs" />
+    <Compile Include="Exceptions\CannotResolveTypeException.cs" />
+    <Compile Include="Exceptions\NotAssignableException.cs" />
+    <Compile Include="Exceptions\TypeAlreadyRegisteredException.cs" />
+    <Compile Include="Exceptions\TypeRepositoryEmptyException.cs" />
+    <Compile Include="Interfaces\IBuilderResolvableItem.cs" />
+    <Compile Include="Interfaces\IResolvable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
