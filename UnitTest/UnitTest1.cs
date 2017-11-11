@@ -77,5 +77,33 @@ namespace UnitTest
             var builder = new ContainerBuilder();
             builder.Build().Resolve<ClassA>();
         }
+
+        [TestMethod]
+        public void ResolvingImplicit()
+        {
+            var builder = new ContainerBuilder { ResolveImplicit = true };
+            builder.Register<ClassB>();
+            var factory = builder.Build();
+
+            var resolvedInstance = factory.Resolve<IInterfaceForClassB>();
+            var desiredInstance = new ClassB();
+
+            Assert.AreEqual(desiredInstance.GetType(), resolvedInstance.GetType());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(CannotResolveTypeException))]
+        public void ResolvingImplicitNotRegistered()
+        {
+            var builder = new ContainerBuilder { ResolveImplicit = true };
+            builder.Register<ClassA>();
+            var factory = builder.Build();
+
+            var resolvedInstance = factory.Resolve<IInterfaceForClassB>();
+            var desiredInstance = new ClassB();
+
+            Assert.AreEqual(desiredInstance.GetType(), resolvedInstance.GetType());
+        }
+
     }
 }
